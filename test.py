@@ -31,27 +31,36 @@ say_hello()
 say_goodbye("Mark")
 
 #concatenate
-print("hello my name is " + name + "and i have " + str(age) +" years old")
+print("hello my name is " + name + "and i am " + str(age) +" years old")
 
 
+#array
+#list
+
+colorList = ["white","red","black","blue"]
+numberList = ["1,2,3,4,5,6,7,8"]
 
 
+#add
+colorList.append("yellow")
 
 
+#travel the list
+for temp in colorList:
+    print(temp)
+#for(i=0;color.length;i++) --this is the JavaScript
+    #let temp = color[i]
+    # console.log(temp)
 
+#dictionary
+me ={
+    "first_name":"Mark",
+    "month":"January",
+    "last_name":"Sanchez",
+    "age":40
+}
+print(me["first_name"])
 
-
-
-
-
-
-
-# function say_hello(){}
-
-def say_hello():
-    print("hello there")
-
-    def say_goodbye(name):
-        print("Goodbye " + name)
-
-    
+me["age"]=45
+me["color"]="Blue"
+print(me)
