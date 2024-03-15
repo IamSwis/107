@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 
+
 app = Flask(__name__)# This is the name of the folder
 
 #interface
@@ -44,6 +45,31 @@ def save_products():
     #mock the save
     products.append(product)
     return json.dumps(product)
+
+@app.get("/api/catalog")
+def get_catalog():
+    return json.dumps(products)
+
+@app.post("/api/catalog")
+def add_product():
+    product = request.get_json()
+    if not product or 'name' not in product or 'price' not in product:
+        return json.dump({"error": "Product must have a name and price"}), 400
+    products.append(product)
+    return json.dump(product), 201
+
+
+
+@app.get("/api/reports/total")
+def get_total_value():
+    total = sum(product['price'] for product in products)
+    return json.dumps({"total_value": total})
+
+@app.get("/api/products/<category>")
+def get_products_by_category(category):
+    filtered_products = [product for product in products if product.get('category') == category]
+    return json.dumps(filtered_products)
+
 
 
 app.run(debug=True)# apply the changes on the code, live 
